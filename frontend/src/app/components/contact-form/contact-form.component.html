@@ -1,0 +1,40 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="form-row">
+    <div class="form-group">
+      <label for="name">Nombre</label>
+      <input id="name" pInputText formControlName="name" />
+      <small *ngIf="form.controls.name.invalid && form.controls.name.touched"
+             class="p-error">
+        Nombre obligatorio
+      </small>
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input id="email" pInputText formControlName="email" />
+      <small *ngIf="form.controls.email.invalid && form.controls.email.touched"
+             class="p-error">
+        Email inválido
+      </small>
+    </div>
+    <div class="form-group">
+      <label for="phone">Teléfono</label>
+      <input id="phone" pInputText formControlName="phone" />
+      <small *ngIf="form.controls.phone.invalid && form.controls.phone.touched"
+             class="p-error">
+        Teléfono obligatorio
+      </small>
+    </div>
+  </div>
+
+  <div class="form-row" style="justify-content: flex-end;">
+    <button pButton type="button" label="Cancelar"
+            class="p-button-text p-button-secondary p-mr-2"
+            (click)="onCancel()"></button>
+    <button pButton type="submit"
+            [label]="form.get('id')!.value ? 'Modificar' : 'Crear'"
+            [icon]="form.get('id')!.value ? 'pi pi-pencil' : 'pi pi-plus'"
+            class="p-button-primary"
+            [disabled]="form.invalid">
+    </button>
+  </div>
+</form>
