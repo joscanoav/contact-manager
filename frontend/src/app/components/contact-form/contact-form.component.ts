@@ -28,16 +28,17 @@ export class ContactFormComponent implements OnChanges {
 
   constructor(private svc: ContactService) {}
 
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes['editContact'] && this.editContact) {
-      this.form.setValue({
-        id: this.editContact.id,
-        name: this.editContact.name,
-        email: this.editContact.email,
-        phone: this.editContact.phone
-      });
-    }
+ngOnChanges(changes: SimpleChanges) {
+  if (changes['editContact'] && this.editContact) {
+    this.form.patchValue({
+      id:      this.editContact.id,   // si viene undefined o null, no pasa nada
+      name:    this.editContact.name,
+      email:   this.editContact.email,
+      phone:   this.editContact.phone
+    });
   }
+}
+
 
 onSubmit() {
   if (this.form.invalid) return;
